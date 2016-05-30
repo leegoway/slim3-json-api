@@ -1,0 +1,20 @@
+{
+    "name": "leegoway/slim3-json-api",
+    "description": "A slim middware to implement fast JSON API's response",
+    "type": "library",
+    "keywords": ["slim","json","API","view", "middleware"],
+    "version": "1.0.0",
+    "require": {
+        "php": "5.5.0"
+    },
+    "license": "GPL 3.0",
+    "authors": [
+        {
+            "name": "leegoway",
+            "email": "leego.sir@gmail.com"
+        }
+    ],
+    "autoload": {
+        "classmap": ["jsonResponse/"]
+    }
+}
