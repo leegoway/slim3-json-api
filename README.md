@@ -20,7 +20,7 @@ To include the extension, you should learn about DI in slim.
 ```php
     require 'vendor/autoload.php';
 
-    $app = new \Slim\Slim();
+    $app = new \Slim\App();
 
     $container = $app->getContainer();
     $container['jsonviewer'] = function ($c) {
