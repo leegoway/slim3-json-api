@@ -3,11 +3,10 @@
     "description": "A slim middware to implement fast JSON API's response",
     "type": "library",
     "keywords": ["slim","json","API","view", "middleware"],
-    "version": "1.0.0",
     "require": {
-        "php": "5.5.0"
+        "php": ">=5.5"
     },
-    "license": "GPL 3.0",
+    "license": "MIT",
     "authors": [
         {
             "name": "leegoway",
