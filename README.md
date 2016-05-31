@@ -9,35 +9,36 @@ Using composer you can add use this as your composer.json
     {
         "require": {
             "slim/slim": "3.*",
-            "entomb/slim-json-api": "dev-master"
+            "leegoway/slim3-json-api": "dev-master"
         }
     }
 
 ```
 ##Usage
-To include the middleware and view you just have to load them using the default _Slim_ way.
-Read more about Slim Here (https://github.com/codeguy/Slim#getting-started)
+To include the extension, you should learn about DI in slim.
 
 ```php
     require 'vendor/autoload.php';
 
     $app = new \Slim\Slim();
 
-    $app->view(new \JsonApiView());
-    $app->add(new \JsonApiMiddleware());
+    $container = $app->getContainer();
+    $container['jsonviewer'] = function ($c) {
+        $viewer = new JsonViewer($c['response']);
+        return $viewer;
+    };
 ```
 
 ###example method
 all your requests will be returning a JSON output.
-the usage will be `$app->render( (int)$HTTP_CODE, (array)$DATA);`
+the usage will be `$app->render($DATA);` and `$app->renderException( (int)$HTTP_CODE, (string)$MSG);`
 
-####example Code 
+####example Normal Data  
 ```php
 
-    $app->get('/', function() use ($app) {
-        $app->render(200,array(
-                'msg' => 'welcome to my API!',
-            ));
+    $app->get('/[{name}]', function ($request, $response, $args) {
+        // Render json view
+        return $this->jsonviewer->render(['username' => 'leego.sir', 'realname' => '李坏', 'age' => 18]);
     });
 
 ```
@@ -46,35 +47,35 @@ the usage will be `$app->render( (int)$HTTP_CODE, (array)$DATA);`
 ####example output
 ```json
 {
-    "msg":"welcome to my API!",
-    "error":false,
-    "status":200
+    "code":200,
+    "data":{"username":"leego.sir",sir","realname":"李坏","age":18},
+    "msg":""
 }
 
 ```
 
-##Errors
-To display an error just set the `error => true` in your data array.
-All requests will have an `error` param that defaults to false.
-
+####example Exception Data  
 ```php
 
-    $app->get('/user/:id', function($id) use ($app) {
-
-        //your code here
-
-        $app->render(404,array(
-                'error' => TRUE,
-                'msg'   => 'user not found',
-            ));
+    $app->get('/[{name}]', function ($request, $response, $args) {
+        // Render json view
+        return $this->jsonviewer->renderException(400, 'not allowed username param');
     });
 
 ```
+
+
+####example output
 ```json
 {
-    "msg":"user not found",
-    "error":true,
-    "status":404
+    "code":400,
+    "data":null,
+    "msg":"not allowed username param"
 }
 
 ```
+
+## Protocol
+This extension is used to format response, and whenever it will return code\msg\data json result.
+The http protocol code will always be 200.
+
