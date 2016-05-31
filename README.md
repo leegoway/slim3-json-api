@@ -1,4 +1,4 @@
-# slim-rest-api
+# slim3-json-api
 
 This is a slim extension to implement fast JSON API's response
 
@@ -31,7 +31,7 @@ To include the extension, you should learn about DI in slim.
 
 ###example method
 all your requests will be returning a JSON output.
-the usage will be `$app->render($DATA);` and `$app->renderException( (int)$HTTP_CODE, (string)$MSG);`
+the usage will be `$app->render($DATA);` and `$app->renderException( (int)$ERR_CODE, (string)$MSG);`
 
 ####example Normal Data  
 ```php
@@ -76,6 +76,6 @@ the usage will be `$app->render($DATA);` and `$app->renderException( (int)$HTTP_
 ```
 
 ## Protocol
-This extension is used to format response, and whenever it will return code\msg\data json result.
+This extension is used to format response, and whenever it will return code\msg\data json formatted result.
 The http protocol code will always be 200.
 
