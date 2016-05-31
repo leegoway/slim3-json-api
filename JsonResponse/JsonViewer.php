@@ -2,7 +2,7 @@
 
 class JsonViewer {
 	
-	private $code = 200;
+    private $code = 200;
     private $data = null;
     private $msg = null;
 
