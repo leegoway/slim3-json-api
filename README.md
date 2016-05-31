@@ -48,7 +48,7 @@ the usage will be `$app->render($DATA);` and `$app->renderException( (int)$ERR_C
 ```json
 {
     "code":200,
-    "data":{"username":"leego.sir",sir","realname":"李坏","age":18},
+    "data":{"username":"leego.sir","realname":"李坏","age":18},
     "msg":""
 }
 
